@@ -1,0 +1,329 @@
+
+  .explore-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: px 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 248, 240, 1) 0%, rgba(255, 237, 213, 1) 100%);
+    position: relative;
+    width: 100vw;
+    margin: 0;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-sizing: border-box;
+    height: 80vh;
+  }
+  
+  /* Rest of your CSS remains the same */
+
+
+/* Add subtle pattern overlay */
+.explore-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 123, 0, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Header styles */
+.explore-menu-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.explore-menu h1 {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.explore-menu h1::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff7b00, #ff9e00);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.explore-menu-text {
+  color: #5a4030;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Swiper container styles */
+.swiper-container {
+  position: relative;
+  padding: 0px 20px;
+  width: 100%;
+  overflow: visible;
+  z-index: 1;
+}
+
+.food-categories-swiper {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.food-category-slide {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.food-category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 180px;
+  perspective: 1000px;
+}
+
+.menu-image-container {
+  position: relative;
+  width: clamp(120px, 12vw, 180px);
+  height: clamp(120px, 12vw, 180px);
+  perspective: 1000px;
+}
+
+.menu-card-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  box-shadow: 
+    0 10px 30px rgba(255, 123, 0, 0.1),
+    0 5px 15px rgba(255, 123, 0, 0.05);
+}
+
+.food-category-item:hover .menu-card-3d {
+  transform: rotateY(10deg) rotateX(5deg);
+  box-shadow: 
+    -10px 10px 30px rgba(255, 123, 0, 0.15),
+    -5px 5px 15px rgba(255, 123, 0, 0.1);
+}
+
+.food-category-item.active .menu-card-3d {
+  transform: rotateY(-5deg) rotateX(-5deg) scale(1.05);
+  box-shadow: 
+    10px 15px 30px rgba(255, 123, 0, 0.2),
+    5px 8px 15px rgba(255, 123, 0, 0.15);
+}
+
+.menu-card-3d img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: transform 0.5s ease;
+}
+
+.food-category-item:hover .menu-card-3d img {
+  transform: scale(1.1) translateZ(20px);
+}
+
+.food-category-item p {
+  color: #5a4030;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 500;
+  margin: 0;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.food-category-item:hover p {
+  color: #ff7b00;
+  transform: scale(1.05);
+}
+
+.food-category-item.active p {
+  color: #ff7b00;
+  font-weight: 600;
+  transform: scale(1.1);
+}
+
+.active-indicator {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid #ff7b00;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 123, 0, 0.4);
+  animation: pulse 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 123, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 123, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 123, 0, 0);
+  }
+}
+
+/* Swiper pagination and navigation customization */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 123, 0, 0.2);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet:hover {
+  background-color: rgba(255, 123, 0, 0.4);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff7b00;
+  transform: scale(1.2);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(255, 123, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 123, 0, 0.2);
+  background-color: #fff8f0;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 20px;
+  color: #ff7b00;
+  font-weight: bold;
+}
+
+.swiper-button-prev:hover:after,
+.swiper-button-next:hover:after {
+  color: #ff6a00;
+}
+
+/* Divider */
+.explore-menu hr {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 123, 0, 0.3) 50%, transparent);
+  border: none;
+  margin: 10px 0;
+  transform-origin: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Orange accent shapes */
+.explore-menu::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 123, 0, 0.05) 0%, rgba(255, 123, 0, 0) 70%);
+  border-radius: 50%;
+  top: -100px;
+  right: -100px;
+  z-index: 0;
+}
+
+/* Media Queries */
+@media (max-width: 1050px) {
+  .explore-menu {
+    gap: 30px;
+    padding: 60px 0;
+  }
+  
+  .swiper-container {
+    padding: 30px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-menu {
+    gap: 25px;
+    padding: 40px 0;
+  }
+  
+  .swiper-container {
+    padding: 20px 5px;
+  }
+  
+  .menu-image-container {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-menu {
+    padding: 30px 0;
+  }
+  
+  .menu-image-container {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .food-category-item p {
+    font-size: 0.9rem;
+  }
+  
+  .swiper-container {
+    padding: 15px 0;
+  }
+}

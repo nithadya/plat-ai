@@ -1,0 +1,295 @@
+/* UserFeedback.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Scope styles to feedback-container to avoid conflicts with ChatBot.css */
+.feedback-container {
+  width: 90%;
+  max-width: 800px; /* Match ChatBot's message-list max-width */
+  margin: 10px auto; /* Center within chatbot container */
+  padding: 16px; /* Consistent with ChatBot padding */
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Lighter shadow to match ChatBot */
+  font-family: 'Outfit', sans-serif;
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  height: calc(100% - 75px); /* Match MISDashboard height, accounting for header */
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px; /* Reduced to match ChatBot spacing */
+}
+
+.feedback-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.feedback-icon {
+  margin-right: 12px;
+  color: #4f46e5; /* Matches ChatBot's accent color */
+}
+
+.feedback-title {
+  font-size: 1.2rem; /* Match recommendations-title in ChatBot */
+  font-weight: 600;
+  color: #374151; /* Consistent with ChatBot headings */
+  margin: 0;
+}
+
+.add-feedback-btn {
+  background: linear-gradient(45deg, #3b82f6, #4f46e5); /* Reuse ChatBot gradient */
+  color: white;
+  border: none;
+  border-radius: 50px; /* Match ChatBot button style */
+  padding: 8px 16px; /* Match mode-toggle-btn padding */
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Match ChatBot button styling */
+  width: auto;
+}
+
+.add-feedback-btn.active {
+  background: #e5e7eb; /* Consistent with ChatBot disabled state */
+  color: #4b5563;
+}
+
+.add-feedback-btn:hover {
+  background: linear-gradient(45deg, #2563eb, #4338ca); /* Darker gradient on hover like ChatBot */
+}
+
+.feedback-form-container {
+  background-color: #f9fafb; /* Match ChatBot input-wrapper background */
+  border-radius: 12px;
+  padding: 16px; /* Consistent padding */
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Slightly tighter spacing to match ChatBot */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced to align with ChatBot's compact design */
+}
+
+.form-group label {
+  font-weight: 500; /* Slightly lighter than ChatBot's bold */
+  font-size: 0.9rem;
+  color: #4b5563; /* Match ChatBot text color */
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px; /* Slightly smaller radius than ChatBot's 12px */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white; /* Ensure consistency with ChatBot */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6; /* Match ChatBot accent */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, #3b82f6, #4f46e5); /* Reuse ChatBot gradient */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #2563eb, #4338ca); /* Consistent hover effect */
+}
+
+.feedback-success {
+  text-align: center;
+  padding: 16px; /* Reduced padding */
+  color: #374151; /* Match ChatBot text */
+}
+
+.feedback-success h3 {
+  font-size: 1.1rem; /* Slightly smaller to fit ChatBot style */
+  font-weight: 600;
+  color: #10b981; /* Match ChatBot green */
+  margin-bottom: 8px;
+}
+
+.feedback-success p {
+  color: #6b7280; /* Match ChatBot muted text */
+  font-size: 0.9rem;
+}
+
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px; /* Match ChatBot padding */
+  border: 1px solid #e2e8f0; /* Lighter border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+  transition: all 0.3s ease;
+}
+
+.feedback-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Slightly less intense than ChatBot */
+  transform: translateY(-2px);
+}
+
+.feedback-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.feedback-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feedback-user-info h3 {
+  font-size: 1rem; /* Slightly smaller to fit ChatBot */
+  font-weight: 600;
+  color: #1f2937; /* Match ChatBot headings */
+  margin: 0;
+}
+
+.feedback-date {
+  font-size: 0.8rem;
+  color: #6b7280; /* Match ChatBot muted text */
+}
+
+.feedback-comment {
+  font-size: 0.9rem; /* Match ChatBot description text */
+  line-height: 1.5;
+  color: #4b5563;
+  margin: 0 0 12px 0;
+}
+
+.feedback-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-btn, .delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500; /* Match ChatBot button weight */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width:auto;
+}
+
+.like-btn {
+  background-color: #dbeafe; /* Match ChatBot info alert */
+  color: #1e40af;
+}
+
+.like-btn:hover {
+  background-color: #bfdbfe;
+}
+
+.delete-btn {
+  background-color: #fee2e2; /* Match ChatBot destructive alert */
+  color: #b91c1c;
+}
+
+.delete-btn:hover {
+  background-color: #fecaca;
+}
+
+.no-feedback {
+  text-align: center;
+  padding: 24px; /* Slightly reduced */
+  color: #6b7280;
+  background-color: #f9fafb; /* Match ChatBot input background */
+  border-radius: 12px;
+  border: 1px dashed #d1d5db;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design - Aligned with ChatBot.css */
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 16px;
+    margin: 0; /* Match ChatBot's mobile margin */
+    border-radius: 0; /* Match ChatBot's mobile border */
+    border: none;
+    height: 100%; /* Full height on mobile */
+  }
+  
+  .feedback-card-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .feedback-date {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-header {
+    flex-direction: column;
+    gap: 12px; /* Tighter spacing */
+    align-items: flex-start;
+  }
+  
+  .add-feedback-btn {
+    width: 100%;
+    padding: 8px 16px; /* Match ChatBot button padding */
+  }
+  
+  .submit-btn {
+    width: 100%;
+  }
+}

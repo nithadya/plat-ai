@@ -1,0 +1,39 @@
+.qodo
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build directories
+dist/
+build/
+public/
+
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+jspm_packages/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+
+# Build artifacts
+*.tgz
+.verv 
+myenv

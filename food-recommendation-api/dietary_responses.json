@@ -1,0 +1,18 @@
+{
+    "dietary_tips": {
+      "high_protein": "Focus on lean meats, fish, eggs, and plant-based proteins like lentils and beans. These foods help with muscle growth and repair.",
+      "low_carb": "Focus on non-starchy vegetables, healthy fats, and lean proteins. Limit bread, pasta, rice, and sugary foods to maintain stable blood sugar.",
+      "low_fat": "Include healthy fats like avocado, olive oil, and nuts while reducing processed fats. Choose lean protein sources and limit fried foods.",
+      "gluten_free": "Focus on naturally gluten-free grains like rice, quinoa, and oats. Avoid wheat, barley, and rye products, and be careful of cross-contamination.",
+      "vegan": "Ensure you get enough B12, iron, and protein from plant-based sources. Consider fortified foods and a diverse mix of legumes, grains, nuts, and vegetables.",
+      "vegetarian": "Include a variety of vegetables, grains, and plant-based protein sources. Eggs and dairy can provide additional protein and nutrients.",
+      "dairy_free": "Choose plant-based milk alternatives like almond, soy, or oat milk. Look for calcium-fortified options and other calcium sources like leafy greens."
+    },
+    "general_responses": {
+      "greeting": "Hello! I'm your dietary assistant. How can I help you with your food choices today?",
+      "fallback": "I'm not sure I understand. Could you tell me more about your dietary preferences?",
+      "thank_you": "You're welcome! Feel free to ask if you need more dietary recommendations.",
+      "menu": "Our restaurant offers a variety of dishes across multiple categories. Would you like to see options for a specific dietary preference?",
+      "no_match": "I couldn't find exact matches for your preferences. Here are some general recommendations you might enjoy."
+    }
+  }
