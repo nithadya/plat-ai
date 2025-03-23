@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 const LoginPopup = ({ setShowLogin }) => {
   const { setToken, url, loadCartData } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Sign Up");
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
   const [data, setData] = useState({
     name: "",
@@ -18,25 +19,37 @@ const LoginPopup = ({ setShowLogin }) => {
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData(data => ({ ...data, [name]: value }));
+    setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const onLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
+
     let new_url = url;
     if (currState === "Login") {
       new_url += "/api/user/login";
     } else {
       new_url += "/api/user/register";
     }
-    const response = await axios.post(new_url, data);
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      loadCartData({ token: response.data.token });
-      setShowLogin(false);
-    } else {
-      toast.error(response.data.message);
+
+    try {
+      const response = await axios.post(new_url, data);
+      if (response.data.success) {
+        const token = response.data.token;
+        setToken(token); // Set token in context
+        localStorage.setItem("token", token); // Store in localStorage
+        await loadCartData(token); // Pass token as string, await to ensure cart loads
+        toast.success(currState === "Login" ? "Logged in successfully!" : "Account created successfully!");
+        setShowLogin(false); // Close popup
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Login/Register Error:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || "An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -55,7 +68,7 @@ const LoginPopup = ({ setShowLogin }) => {
             <div className="login-input-group">
               <input
                 name="name"
-                onChange={onChangeHandler}  // Fixed attribute name
+                onChange={onChangeHandler}
                 value={data.name}
                 type="text"
                 placeholder="Your name"
@@ -67,7 +80,7 @@ const LoginPopup = ({ setShowLogin }) => {
           <div className="login-input-group">
             <input
               name="email"
-              onChange={onChangeHandler}  // Already correct
+              onChange={onChangeHandler}
               value={data.email}
               type="email"
               placeholder="Your email"
@@ -78,7 +91,7 @@ const LoginPopup = ({ setShowLogin }) => {
           <div className="login-input-group">
             <input
               name="password"
-              onChange={onChangeHandler}  // Changed from onChangeHandler to onChange
+              onChange={onChangeHandler}
               value={data.password}
               type="password"
               placeholder="Password"
@@ -87,22 +100,25 @@ const LoginPopup = ({ setShowLogin }) => {
             />
           </div>
         </div>
-        <button type="submit" className="login-submit-btn">
-          {currState === "Login" ? "Login" : "Create account"}
+        <button type="submit" className="login-submit-btn" disabled={isLoading}>
+          {isLoading ? "Processing..." : currState === "Login" ? "Login" : "Create account"}
         </button>
         <div className="login-terms">
           <input type="checkbox" required className="login-checkbox" />
-          <label className="login-terms-label">By continuing, I agree to the terms of use & privacy policy.</label>
+          <label className="login-terms-label">
+            By continuing, I agree to the terms of use & privacy policy.
+          </label>
         </div>
         <div className="login-switch-state text-center">
           {currState === "Login" ? (
             <p>
               Create a new account?{" "}
-              <button 
-                type="button" 
-                style={{ backgroundColor: "white", width: "auto" }} 
-                className="login-switch-btn" 
+              <button
+                type="button"
+                style={{ backgroundColor: "white", width: "auto" }}
+                className="login-switch-btn"
                 onClick={() => setCurrState("Sign Up")}
+                disabled={isLoading}
               >
                 Click here
               </button>
@@ -110,11 +126,12 @@ const LoginPopup = ({ setShowLogin }) => {
           ) : (
             <p>
               Already have an account?{" "}
-              <button 
-                type="button" 
-                style={{ backgroundColor: "white", width: "auto" }} 
-                className="login-switch-btn" 
+              <button
+                type="button"
+                style={{ backgroundColor: "white", width: "auto" }}
+                className="login-switch-btn"
                 onClick={() => setCurrState("Login")}
+                disabled={isLoading}
               >
                 Login here
               </button>
